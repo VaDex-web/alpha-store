@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alpha Store — смартфоны и техника в Ростове-на-Дону</title>
+<meta name="description" content="Alpha Store — магазин электроники в Ростове-на-Дону, ул. Народного Ополчения, 213. Новые оригинальные смартфоны Apple, Samsung, Google, Xiaomi, Honor, техника Dyson. Гарантия магазина, рассрочка до 36 месяцев, trade-in.">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top__in">
+    <a class="logo" href="#top" aria-label="Alpha Store — на главную">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#1b1d20"/><path d="M16 7 7.5 25h4.2L16 15.6 20.3 25h4.2z" fill="#fff"/><path d="m16 20.2 2 4.8h-4z" fill="#2f62ff"/></svg>
+      Alpha Store
+    </a>
+    <nav class="menu" aria-label="Разделы">
+      <a href="#catalog">Каталог</a><a href="#terms">Условия</a><a href="#reviews">Отзывы</a><a href="#store">Магазин</a><a href="#contacts">Контакты</a>
+    </nav>
+    <div class="top__right">
+      <span class="status js-status"><i></i><span>Ежедневно 9:30–20:00</span></span>
+      <a class="btn btn--line btn--sm" href="https://t.me/ALPHASTORE_RU" target="_blank" rel="noopener">Написать в Telegram</a>
+      <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mnav"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h14M3 10h14M3 14h14"/></svg></button>
+    </div>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Меню">
+  <a href="#catalog">Каталог</a><a href="#terms">Условия покупки</a><a href="#reviews">Отзывы</a><a href="#store">Фото магазина</a><a href="#contacts">Контакты</a>
+  <a class="btn btn--accent" href="https://t.me/ALPHASTORE_RU" target="_blank" rel="noopener">Написать в Telegram</a>
+</nav>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <p class="eyebrow">Магазин электроники · Ростов-на-Дону</p>
+        <h1>Новые смартфоны и&nbsp;техника с&nbsp;гарантией магазина</h1>
+        <p class="hero__lead">Apple, Samsung, Google, Xiaomi, Honor и Dyson. Устройства новые и запечатанные — IMEI и пломбы проверяем при вас. Есть рассрочка до 36 месяцев и trade-in.</p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#catalog">Смотреть каталог</a>
+          <a class="btn btn--line" href="#contacts">Связаться с нами</a>
+        </div>
+        <div class="hero__meta">
+          <span><b>5.0</b> · <a href="https://yandex.ru/maps/org/153332737372/reviews/" target="_blank" rel="noopener">93 отзыва на Яндекс Картах</a></span>
+          <span>ул. Народного Ополчения, 213</span>
+        </div>
+      </div>
+      <figure class="hero__photo">
+        <img data-photo="hall" data-size="XL" alt="Торговый зал Alpha Store с витринами техники" fetchpriority="high">
+        <figcaption>Торговый зал на Народного Ополчения</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec sec--soft" id="catalog" aria-labelledby="catalogTitle">
+    <div class="wrap">
+      <div class="sh">
+        <h2 id="catalogTitle">Каталог</h2>
+        <p id="catalogMeta"></p>
+      </div>
+      <div class="tools">
+        <label class="search"><span class="vh">Поиск по каталогу</span>
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="m17 17-3.6-3.6"/></svg>
+          <input id="q" type="search" placeholder="Например, iPhone 17 Pro или 512" autocomplete="off">
+        </label>
+        <div class="seg" id="cats" role="group" aria-label="Категория"></div>
+        <span></span>
+        <label class="sort"><span class="vh">Сортировка</span>
+          <select id="sort"><option value="def">Сначала новые поступления</option><option value="asc">Сначала дешевле</option><option value="desc">Сначала дороже</option></select>
+        </label>
+      </div>
+      <div class="brands" id="brands" role="group" aria-label="Бренд"></div>
+      <div class="grid" id="grid"></div>
+      <p class="empty" id="empty">Ничего не нашлось. Напишите нам в Telegram — подскажем, есть ли нужная модель или когда она появится.</p>
+      <div class="more" id="more"><button class="btn btn--line" id="moreBtn">Показать ещё</button><span id="moreInfo"></span></div>
+      <p class="note">Цены и ассортимент взяты из каталога магазина на 8 октября 2026 года. Перед покупкой уточните актуальную стоимость и наличие нужного цвета. Откройте модель, чтобы выбрать память, тип SIM и цвет.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="terms" aria-labelledby="termsTitle">
+    <div class="wrap terms">
+      <figure class="terms__photo"><img data-photo="shelves" data-size="XL" alt="Витрины с технологиями в Alpha Store" loading="lazy"></figure>
+      <div>
+        <h2 id="termsTitle">Как покупают в Alpha Store</h2>
+        <div class="tlist" style="margin-top:28px">
+          <div class="trow"><h3>Только новые устройства</h3><div><p>Смартфоны в заводской упаковке, не активированы и не восстановлены. Перед оплатой проверяем IMEI, упаковку и пломбы, можно активировать телефон на месте.</p></div></div>
+          <div class="trow"><h3>Гарантия магазина</h3><div><p>На технику Apple — 2 года, на смартфоны других брендов — 1 год. Покупку подтверждают товарный чек и гарантийный талон.</p></div></div>
+          <div class="trow"><h3>Рассрочка 0-0-36</h3><div><p>Беспроцентная рассрочка до 36 месяцев без первоначального взноса.</p></div></div>
+          <div class="trow"><h3>Trade-in</h3><div><p>Старый телефон можно сдать в зачёт нового — стоимость оценим в магазине.</p></div></div>
+          <div class="trow"><h3>Доставка и самовывоз</h3><div><p>Самовывоз — на Народного Ополчения, 213, в пяти минутах пешком от ЦГБ. По Ростову заказы до 15:00 доставляем в тот же день, доставка — 500&nbsp;₽.</p><small>Отправка в другие города — через Авито Доставку, по договорённости.</small></div></div>
+          <div class="trow"><h3>Оплата</h3><div><p>Наличными, картой, по QR-коду или переводом.</p><small>При оплате картой и по QR есть комиссия — размер уточните у менеджера.</small></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--soft" id="reviews" aria-labelledby="revTitle">
+    <div class="wrap revs">
+      <div>
+        <h2 id="revTitle">Отзывы покупателей</h2>
+        <div class="score"><b>5.0</b><span class="stars" aria-label="5 из 5">★★★★★</span></div>
+        <p style="color:var(--mute);font-size:15px">93 отзыва на Яндекс Картах</p>
+        <blockquote class="lead-rev">
+          <p>«Весь Ростов обзвонил, и в регионах искал. Хорошо, что в итоге вышел именно на этот магазин! Взял новый MacBook Pro 16" на M5 Pro, по адекватной цене. Отдельная благодарность Артёму за консультацию, доверие и человеческий подход!»</p>
+          <cite>Руслан, 18 сентября</cite>
+        </blockquote>
+        <a class="revs__link" href="https://yandex.ru/maps/org/153332737372/reviews/" target="_blank" rel="noopener">Все отзывы на Яндекс Картах →</a>
+      </div>
+      <div class="rlist" id="rlist"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="store" aria-labelledby="storeTitle">
+    <div class="wrap">
+      <div class="sh">
+        <h2 id="storeTitle">Магазин</h2>
+        <p>Заходите посмотреть технику вживую: консультанты помогут сравнить модели, а пока оформляем покупку — нальём кофе.</p>
+      </div>
+      <div class="gal" id="gal"></div>
+    </div>
+  </section>
+
+  <section class="sec sec--soft" id="contacts" aria-labelledby="ctTitle">
+    <div class="wrap ct">
+      <div>
+        <h2 id="ctTitle">Контакты</h2>
+        <dl>
+          <div><dt>Адрес</dt><dd>Ростов-на-Дону, ул. Народного Ополчения, 213<small>5 минут пешком от ЦГБ</small></dd></div>
+          <div><dt>Часы работы</dt><dd>Ежедневно с 9:30 до 20:00<small class="js-status-text">без перерывов и выходных</small></dd></div>
+          <div><dt>Связь</dt><dd><a href="https://t.me/ALPHASTORE_RU" target="_blank" rel="noopener">Telegram: @ALPHASTORE_RU</a><small>Ответим про наличие, цвета и рассрочку</small></dd></div>
+        </dl>
+        <div class="ct__btns">
+          <a class="btn btn--accent" href="https://t.me/ALPHASTORE_RU" target="_blank" rel="noopener">Написать в Telegram</a>
+          <a class="btn btn--line" href="https://yandex.ru/maps/?rtext=~47.233930%2C39.705001&rtt=auto" target="_blank" rel="noopener">Построить маршрут</a>
+        </div>
+      </div>
+      <div class="map"><iframe src="https://yandex.ru/map-widget/v1/?ll=39.705001%2C47.233930&z=16&pt=39.705001%2C47.233930%2Cpm2blm" title="Alpha Store на карте: ул. Народного Ополчения, 213" loading="lazy" allowfullscreen></iframe></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <span>© Alpha Store, Ростов-на-Дону</span>
+      <nav aria-label="Ссылки в подвале"><a href="#catalog">Каталог</a><a href="https://alpha-store.clients.site/cart" target="_blank" rel="noopener">Корзина</a><a href="https://t.me/ALPHASTORE_RU" target="_blank" rel="noopener">Telegram</a><a href="https://yandex.ru/maps/org/153332737372" target="_blank" rel="noopener">Яндекс Карты</a></nav>
+    </div>
+    <p class="foot__legal">ИП Княжева Анна Романовна · ОГРНИП 325619600284260 · ИНН 614009030218<br>Информация о ценах носит справочный характер и не является публичной офертой.</p>
+  </div>
+</footer>
+
+<div class="mbar"><a class="btn btn--primary" href="#catalog">Каталог</a><a class="btn btn--line" href="https://t.me/ALPHASTORE_RU" target="_blank" rel="noopener">Telegram</a></div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Фото магазина"><button class="x" data-close aria-label="Закрыть"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m3 3 10 10M13 3 3 13"/></svg></button><img id="lbImg" alt=""></div>
+
+<script src="data.js"></script>
+<script src="common.js"></script>
+<script>
+const { SHOP, TG, fmt, esc, plural, memLabel, items, groups, device, photo, productPage } = AS;
+const ALT = id => "https://avatars.mds.yandex.net/get-altay/" + id;
+const PHOTOS = {
+  hall: "13466092/2a0000018f3de06b46465d7b47339960260a",
+  shelves: "11368589/2a0000018c11129b886c179ce92f158f0b80",
+  showcase: "13072111/2a0000018f3de079a630bc9466efb59780cc",
+  cases: "11471993/2a0000018f3de075a20fd55955920dd8320d",
+  wall: "1881734/2a000001859cc4f9b7f8cfa390c9cc1eaff9",
+  neon: "13929277/2a0000019183c0643befc219eddcf9d33651",
+  entrance: "13229524/2a0000018f3de1a2abd9c857bc3154a4860b",
+  door: "13466092/2a0000018f3de1a3831fb0ef338d3fae012a",
+  osmo: "9833544/2a0000019127adf3d386bdc734451f42e57d",
+  marshall: "4699294/2a00000190f8c466b083d12b40fb3b0d4181"
+};
+document.querySelectorAll("img[data-photo]").forEach(i => { i.src = ALT(PHOTOS[i.dataset.photo]) + "/" + (i.dataset.size || "L"); });
+
+document.getElementById("catalogMeta").textContent = `${groups.length} моделей, ${items.length} предложений · цены на 8 октября 2026`;
+
+const CATS = [["all","Всё"],["m","Смартфоны"],["v","Пылесосы"]];
+const state = { cat:"all", brand:"all", q:"", sort:"def", limit:12 };
+const catsBox = document.getElementById("cats"), brandsBox = document.getElementById("brands"), grid = document.getElementById("grid");
+catsBox.innerHTML = CATS.map(([k,l]) => `<button data-k="${k}" class="${k==="all"?"on":""}" aria-pressed="${k==="all"}">${l}</button>`).join("");
+function renderBrands(){
+  const pool = groups.filter(g => state.cat === "all" || g.cat === state.cat);
+  const counts = {}; pool.forEach(g => counts[g.brand] = (counts[g.brand]||0) + 1);
+  const list = Object.keys(counts).sort((a,b) => counts[b]-counts[a] || a.localeCompare(b));
+  if (state.brand !== "all" && !counts[state.brand]) state.brand = "all";
+  brandsBox.innerHTML = `<button class="brand${state.brand==="all"?" on":""}" data-b="all" aria-pressed="${state.brand==="all"}">Все бренды</button>` +
+    list.map(b => `<button class="brand${state.brand===b?" on":""}" data-b="${esc(b)}" aria-pressed="${state.brand===b}">${esc(b)}<small>${counts[b]}</small></button>`).join("");
+}
+function card(g){
+  const media = g.img ? `<img src="${photo(g.img)}" alt="${esc(g.model)}" loading="lazy">` : `<div class="dev">${device(g.model, g.cat, g.items[0].color)}</div>`;
+  const mems = g.mems.length ? `<div class="mem">${g.mems.map(m => `<span>${memLabel(m)}</span>`).join("")}</div>` : "";
+  const n = g.items.length;
+  return `<a class="card" href="${productPage(g)}">
+    <div class="card__img">${media}</div>
+    <div class="card__body">
+      <span class="card__brand">${esc(g.brand)}</span>
+      <h3>${esc(g.short)}</h3>
+      ${mems}
+      <div class="card__foot">
+        <div><span class="price">${n > 1 ? "<small>от</small>" : ""}${fmt(g.min)}</span>${n > 1 ? `<span class="vars">${n} ${plural(n,"вариант","варианта","вариантов")}</span>` : ""}</div>
+        <span class="btn btn--primary">${n > 1 ? "Выбрать вариант" : "Подробнее"}</span>
+      </div>
+    </div>
+  </a>`;
+}
+function filtered(){
+  const q = state.q.toLowerCase().replace(/ё/g,"е").trim();
+  let r = groups.filter(g => (state.cat === "all" || g.cat === state.cat) && (state.brand === "all" || g.brand === state.brand));
+  if (q) { const words = q.split(/\s+/); r = r.filter(g => { const hay = (g.model + " " + g.items.map(i => i.name).join(" ")).toLowerCase(); return words.every(w => hay.includes(w)); }); }
+  if (state.sort === "asc") r = [...r].sort((a,b) => a.min - b.min);
+  else if (state.sort === "desc") r = [...r].sort((a,b) => b.min - a.min);
+  else r = [...r].sort((a,b) => a.order - b.order);
+  return r;
+}
+function render(){
+  const r = filtered();
+  const shown = r.slice(0, state.limit);
+  grid.innerHTML = shown.map(card).join("");
+  document.getElementById("empty").style.display = r.length ? "none" : "block";
+  const more = document.getElementById("more");
+  more.style.display = r.length > state.limit ? "flex" : "none";
+  document.getElementById("moreInfo").textContent = r.length > state.limit ? `Показано ${shown.length} из ${r.length}` : "";
+}
+catsBox.onclick = e => { const b = e.target.closest("button"); if (!b) return; state.cat = b.dataset.k; state.limit = 12;
+  catsBox.querySelectorAll("button").forEach(x => { x.classList.toggle("on", x === b); x.setAttribute("aria-pressed", x === b); }); renderBrands(); render(); };
+brandsBox.onclick = e => { const b = e.target.closest("button"); if (!b) return; state.brand = b.dataset.b; state.limit = 12; renderBrands(); render(); };
+document.getElementById("q").addEventListener("input", e => { state.q = e.target.value; state.limit = 12; render(); });
+document.getElementById("sort").onchange = e => { state.sort = e.target.value; render(); };
+document.getElementById("moreBtn").onclick = () => { state.limit += 12; render(); };
+renderBrands(); render();
+
+const REVS = [
+  ["Миронов Кирилл","29 августа","Покупал OnePlus, всем доволен. Телефон работает быстро, камера радует. Но хочу отметить в первую очередь уровень сервиса — с продавцами было очень приятно пообщаться, все вежливо и без навязывания. Получил настоящее удовольствие от покупки и общения. Спасибо!"],
+  ["Станислава Старостоянц","10 сентября","Спасибо огромное Артему. Помог с выбором. Лучшая техника в Ростове. Цена и качество топ 🔥"],
+  ["Екатерина","12 мая","Большое спасибо за телефон, оперативную обратную связь, все рассказали показали, а так же сделали приятные бонусы к покупке. Телефон целый, оригинальный. Цены самые приятные и низкие в городе."],
+  ["Александр М.","21 сентября","Все супер. Цены ниже рынка. Работают быстро 👍🏼"],
+  ["Гостепримный человек.","20 августа","всегда чисто, ребята приветливые. забегала забрать заказ после работы, не серчайте что аж в 19.06+- забежала, пока дождались, чуть задержались, но всё забрала и оплатила, ребятам за терпение спасибо) интерьер довольно стильный, акции приятные."],
+  ["Дмитрий Бояринов","13 мая","Покупал телефон все привезли как и обещали! Помогли с настройками! Приветливый персонал! Всем советую!"],
+  ["Ника","5 июля","Спасибо большое персоналу за консультацию! В итоге взяли тут, потому что цена ниже чем у других 🤍"],
+  ["Александр Орлов","16 августа","Отличный магазин, Персонал всегда подскажет и найдет решение на вашу просьбу."],
+  ["Вера Арчакова","6 октября","лучшее место ❤️❤️"]
+];
+document.getElementById("rlist").innerHTML = REVS.map(r => `<article class="r"><header><b>${esc(r[0])}</b><span>${r[1]}</span></header><p>${esc(r[2])}</p></article>`).join("");
+
+const GAL = [["hall","a","Торговый зал"],["neon","b","Логотип Alpha Store в зале"],["wall","c","Стена с коробками техники"],["cases","c","Витрина с чехлами"],["showcase","d","Витрины с ноутбуками и консолями"],["entrance","e","Вход в магазин"],["door","e","Дверь магазина"],["osmo","e","DJI Osmo Pocket на стойке"],["marshall","e","Наушники Marshall"]];
+document.getElementById("gal").innerHTML = GAL.map(([k,c,a]) => `<button class="${c}" data-src="${ALT(PHOTOS[k])}/XL" aria-label="Открыть фото: ${esc(a)}"><img src="${ALT(PHOTOS[k])}/L" alt="${esc(a)}" loading="lazy"></button>`).join("");
+const lb = document.getElementById("lb"), lbImg = document.getElementById("lbImg");
+document.getElementById("gal").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; lbImg.src = b.dataset.src; lbImg.alt = b.querySelector("img").alt; lb.classList.add("open"); lb.querySelector(".x").focus(); });
+lb.addEventListener("click", e => { if (e.target === lb || e.target.closest("[data-close]")) lb.classList.remove("open"); });
+addEventListener("keydown", e => { if (e.key === "Escape") lb.classList.remove("open"); });
+
+const burger = document.getElementById("burger"), mnav = document.getElementById("mnav");
+burger.onclick = () => { const o = mnav.classList.toggle("open"); burger.setAttribute("aria-expanded", o); };
+mnav.addEventListener("click", e => { if (e.target.closest("a")) { mnav.classList.remove("open"); burger.setAttribute("aria-expanded", false); } });
+
+function status(){
+  const p = new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Moscow",hour:"2-digit",minute:"2-digit",hour12:false}).formatToParts(new Date());
+  const m = +p.find(x => x.type === "hour").value * 60 + +p.find(x => x.type === "minute").value;
+  const open = m >= 570 && m < 1200;
+  document.querySelectorAll(".js-status").forEach(s => { s.classList.toggle("closed", !open); s.querySelector("span").textContent = open ? "Открыто до 20:00" : "Закрыто · откроемся в 9:30"; });
+}
+status(); setInterval(status, 60000);
+</script>
+</body>
+</html>

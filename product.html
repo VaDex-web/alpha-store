@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Товар — Alpha Store, Ростов-на-Дону</title>
+<meta name="description" content="Alpha Store — магазин электроники в Ростове-на-Дону, ул. Народного Ополчения, 213. Новые оригинальные смартфоны Apple, Samsung, Google, Xiaomi, Honor, техника Dyson. Гарантия магазина, рассрочка до 36 месяцев, trade-in.">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top__in">
+    <a class="logo" href="index.html" aria-label="Alpha Store — на главную">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#1b1d20"/><path d="M16 7 7.5 25h4.2L16 15.6 20.3 25h4.2z" fill="#fff"/><path d="m16 20.2 2 4.8h-4z" fill="#2f62ff"/></svg>
+      Alpha Store
+    </a>
+    <nav class="menu" aria-label="Разделы">
+      <a href="index.html#catalog">Каталог</a><a href="index.html#terms">Условия</a><a href="index.html#reviews">Отзывы</a><a href="index.html#store">Магазин</a><a href="index.html#contacts">Контакты</a>
+    </nav>
+    <div class="top__right">
+      <span class="status js-status"><i></i><span>Ежедневно 9:30–20:00</span></span>
+      <a class="btn btn--line btn--sm" href="https://t.me/ALPHASTORE_RU" target="_blank" rel="noopener">Написать в Telegram</a>
+      <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mnav"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h14M3 10h14M3 14h14"/></svg></button>
+    </div>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Меню">
+  <a href="index.html#catalog">Каталог</a><a href="index.html#terms">Условия покупки</a><a href="index.html#reviews">Отзывы</a><a href="index.html#store">Фото магазина</a><a href="index.html#contacts">Контакты</a>
+  <a class="btn btn--accent" href="https://t.me/ALPHASTORE_RU" target="_blank" rel="noopener">Написать в Telegram</a>
+</nav>
+
+<main>
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Навигация"><a href="index.html">Главная</a><span>/</span><a href="index.html#catalog">Каталог</a><span>/</span><span id="crBrand"></span><span id="crSep" hidden>/</span><span id="crModel"></span></nav>
+    <div id="page"></div>
+  </div>
+  <section class="sec sec--soft" id="related" hidden aria-labelledby="relTitle">
+    <div class="wrap">
+      <div class="sh"><h2 id="relTitle">Ещё в каталоге</h2><a class="btn btn--line btn--sm" href="index.html#catalog">Весь каталог</a></div>
+      <div class="grid" id="relGrid"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <span>© Alpha Store, Ростов-на-Дону</span>
+      <nav aria-label="Ссылки в подвале"><a href="index.html#catalog">Каталог</a><a href="https://alpha-store.clients.site/cart" target="_blank" rel="noopener">Корзина</a><a href="https://t.me/ALPHASTORE_RU" target="_blank" rel="noopener">Telegram</a><a href="https://yandex.ru/maps/org/153332737372" target="_blank" rel="noopener">Яндекс Карты</a></nav>
+    </div>
+    <p class="foot__legal">ИП Княжева Анна Романовна · ОГРНИП 325619600284260 · ИНН 614009030218<br>Информация о ценах носит справочный характер и не является публичной офертой.</p>
+  </div>
+</footer>
+
+<div class="mbar"><a class="btn btn--primary" id="mbarBuy" href="#" target="_blank" rel="noopener">Оформить заказ</a><a class="btn btn--line" href="https://t.me/ALPHASTORE_RU" target="_blank" rel="noopener">Telegram</a></div>
+
+<script src="data.js"></script>
+<script src="common.js"></script>
+<script>
+const { TG, fmt, esc, plural, memLabel, groups, bySlug, RU, colorHex, device, photo, productPage, shopUrl } = AS;
+const params = new URLSearchParams(location.search);
+const g = bySlug[params.get("m")];
+const page = document.getElementById("page");
+
+if (!g) {
+  page.innerHTML = `<div class="nf"><h1>Товар не найден</h1><p>Возможно, его уже продали или ссылка устарела.</p><a class="btn btn--primary" href="index.html#catalog">Перейти в каталог</a></div>`;
+  document.getElementById("crBrand").textContent = "Товар не найден";
+} else {
+  document.title = `${g.model} — купить в Ростове-на-Дону | Alpha Store`;
+  const md = document.querySelector('meta[name="description"]');
+  md.content = `${g.model} в Alpha Store, Ростов-на-Дону: от ${fmt(g.min)}. Новый, запечатанный, гарантия магазина, рассрочка 0-0-36, trade-in. ул. Народного Ополчения, 213.`;
+  document.getElementById("crBrand").textContent = g.brand; document.getElementById("crSep").hidden = false; document.getElementById("crModel").textContent = g.short;
+
+  const simOrder = ["SIM + eSIM", "2 SIM", "Только eSIM", ""];
+  const mems = [...new Set(g.items.map(i => i.mem ?? 0))].sort((a, b) => (a || 1e9) - (b || 1e9));
+  const sims = [...new Set(g.items.map(i => i.sim))].sort((a, b) => simOrder.indexOf(a) - simOrder.indexOf(b));
+  let cur = g.items.find(i => i.id === params.get("v")) || [...g.items].sort((a, b) => a.price - b.price)[0];
+  const isPhone = g.cat === "m";
+  const warranty = it => it.warranty === 2 ? "Гарантия магазина 2 года" : it.warranty === 1 ? "Гарантия магазина 1 год" : "Гарантия магазина — уточняйте у менеджера";
+  const colorName = c => c ? `${c}${RU[c] ? " · " + RU[c] : ""}` : "уточняйте";
+
+  page.innerHTML = `<div class="pp">
+    <div class="pp__media"><div class="stage" id="stage"></div></div>
+    <div>
+      <div class="pp__brand">${esc(g.brand)} · ${isPhone ? "смартфон" : "пылесос"}</div>
+      <h1>${esc(g.model)}</h1>
+      ${mems.length > 1 || mems[0] ? `<div class="opt"><div class="opt__label">Память: <b id="lMem"></b></div><div class="chips" id="oMem">${mems.map(m => `<button class="chip" data-mem="${m}">${m ? memLabel(m) : "Не указана"}</button>`).join("")}</div></div>` : ""}
+      ${sims.filter(Boolean).length ? `<div class="opt"><div class="opt__label">SIM-карта: <b id="lSim"></b></div><div class="chips" id="oSim">${sims.map(s => `<button class="chip" data-sim="${esc(s)}">${s || "Уточняйте"}</button>`).join("")}</div></div>` : ""}
+      <div class="opt"><div class="opt__label">Цвет: <b id="lCol"></b></div><div class="chips" id="oCol"></div></div>
+      <div class="buy">
+        <div class="buy__price" id="bPrice"></div>
+        <div class="buy__sub" id="bSub"></div>
+        <div class="buy__btns">
+          <a class="btn btn--primary" id="bBuy" href="#" target="_blank" rel="noopener">Оформить заказ</a>
+          <a class="btn btn--line" id="bAsk" href="${TG}" target="_blank" rel="noopener">Спросить в Telegram</a>
+        </div>
+        <ul>
+          <li id="bWar"></li>
+          ${isPhone ? `<li>Новый, в заводской упаковке. IMEI и пломбы проверяем при вас</li>` : `<li>Новый, оригинальный</li>`}
+          <li>Беспроцентная рассрочка до 36 месяцев без первого взноса</li>
+          ${isPhone ? `<li>Trade-in: старый телефон — в зачёт нового</li>` : ""}
+          <li>Самовывоз на Народного Ополчения, 213 или доставка по Ростову — 500 ₽, в тот же день при заказе до 15:00</li>
+        </ul>
+        <small>«Оформить заказ» откроет этот товар в каталоге Alpha Store — там работает корзина. Цена на 8 октября 2026, перед покупкой уточните наличие.</small>
+      </div>
+      ${g.items.length > 1 ? `<div style="margin-top:34px"><h2 style="font-size:20px">Все варианты · ${g.items.length}</h2>
+        <table class="vt"><thead><tr><th>Вариант</th><th>Цвет</th><th>Цена</th></tr></thead><tbody id="vt"></tbody></table></div>` : ""}
+    </div>
+  </div>`;
+
+  const stage = document.getElementById("stage");
+  function drawStage(){
+    stage.innerHTML = cur.img
+      ? `<img src="${photo(cur.img)}" alt="${esc(g.model)}">`
+      : `<div class="dev">${device(g.model, g.cat, cur.color)}</div><span class="stage__note">Иллюстрация<span class="hide-sm"> · реальные фото пришлём в Telegram</span></span>`;
+  }
+  const label = it => [it.mem ? memLabel(it.mem) : "", it.sim].filter(Boolean).join(" · ") || "Базовая версия";
+  function pick(mem, sim, color){
+    const pool = g.items.filter(i => (mem === undefined || (i.mem ?? 0) === mem) && (sim === undefined || i.sim === sim));
+    if (!pool.length) return null;
+    return pool.find(i => i.color === color) || [...pool].sort((a, b) => a.price - b.price)[0];
+  }
+  function update(push){
+    const oMem = document.getElementById("oMem"), oSim = document.getElementById("oSim");
+    oMem && oMem.querySelectorAll(".chip").forEach(b => { const m = +b.dataset.mem; b.classList.toggle("on", m === (cur.mem ?? 0)); b.setAttribute("aria-pressed", m === (cur.mem ?? 0)); });
+    oSim && oSim.querySelectorAll(".chip").forEach(b => { const s = b.dataset.sim; const ok = g.items.some(i => (i.mem ?? 0) === (cur.mem ?? 0) && i.sim === s); b.disabled = !ok; b.classList.toggle("on", s === cur.sim); b.setAttribute("aria-pressed", s === cur.sim); });
+    document.getElementById("lMem") && (document.getElementById("lMem").textContent = cur.mem ? memLabel(cur.mem) : "уточняйте");
+    document.getElementById("lSim") && (document.getElementById("lSim").textContent = cur.sim || "уточняйте");
+    const seen = new Set(); const same = g.items.filter(i => (i.mem ?? 0) === (cur.mem ?? 0) && i.sim === cur.sim).filter(i => { const k = i.color + "|" + i.price; if (seen.has(k) && i.id !== cur.id) return false; seen.add(k); return true; });
+    document.getElementById("oCol").innerHTML = same.map(i => `<button class="sw${i.id === cur.id ? " on" : ""}" data-id="${i.id}" aria-pressed="${i.id === cur.id}"><i style="background:${colorHex(i.color)}"></i>${esc(i.color || "Цвет уточняйте")} · ${fmt(i.price)}</button>`).join("");
+    document.getElementById("lCol").textContent = colorName(cur.color);
+    document.getElementById("bPrice").textContent = fmt(cur.price);
+    document.getElementById("bSub").textContent = `${g.model}, ${label(cur)}${cur.color ? ", " + cur.color : ""}`;
+    document.getElementById("bWar").textContent = warranty(cur);
+    document.getElementById("bBuy").href = shopUrl(cur);
+    document.getElementById("mbarBuy").href = shopUrl(cur);
+    const vt = document.getElementById("vt");
+    if (vt) vt.innerHTML = [...g.items].sort((a, b) => (a.mem ?? 0) - (b.mem ?? 0) || simOrder.indexOf(a.sim) - simOrder.indexOf(b.sim) || a.price - b.price)
+      .map(i => `<tr class="${i.id === cur.id ? "on" : ""}"><td>${esc(label(i))}</td><td><span class="dot" style="background:${colorHex(i.color)}"></span>${esc(i.color || "—")}</td><td>${i.id === cur.id ? fmt(i.price) : `<button data-id="${i.id}">${fmt(i.price)}</button>`}</td></tr>`).join("");
+    drawStage();
+    if (push) history.replaceState(null, "", productPage(g, cur));
+  }
+  page.addEventListener("click", e => {
+    const m = e.target.closest("[data-mem]"), s = e.target.closest("[data-sim]"), c = e.target.closest("[data-id]");
+    if (m) { const nx = pick(+m.dataset.mem, cur.sim, cur.color) || pick(+m.dataset.mem, undefined, cur.color); if (nx) { cur = nx; update(true); } }
+    else if (s && !s.disabled) { const nx = pick(cur.mem ?? 0, s.dataset.sim, cur.color); if (nx) { cur = nx; update(true); } }
+    else if (c) { cur = g.items.find(i => i.id === c.dataset.id); update(true); }
+  });
+  update(false);
+
+  const rel = groups.filter(x => x !== g && x.brand === g.brand).concat(groups.filter(x => x !== g && x.brand !== g.brand && x.cat === g.cat)).slice(0, 4);
+  if (rel.length) {
+    document.getElementById("related").hidden = false;
+    document.getElementById("relTitle").textContent = rel[0].brand === g.brand ? `Ещё ${g.brand}` : "Ещё в каталоге";
+    document.getElementById("relGrid").innerHTML = rel.map(x => {
+      const media = x.img ? `<img src="${photo(x.img)}" alt="${esc(x.model)}" loading="lazy">` : `<div class="dev">${device(x.model, x.cat, x.items[0].color)}</div>`;
+      const n = x.items.length;
+      return `<a class="card" href="${productPage(x)}"><div class="card__img">${media}</div><div class="card__body"><span class="card__brand">${esc(x.brand)}</span><h3>${esc(x.short)}</h3><div class="card__foot"><div><span class="price">${n > 1 ? "<small>от</small>" : ""}${fmt(x.min)}</span></div><span class="btn btn--primary">Подробнее</span></div></div></a>`;
+    }).join("");
+  }
+}
+
+const burger = document.getElementById("burger"), mnav = document.getElementById("mnav");
+burger.onclick = () => { const o = mnav.classList.toggle("open"); burger.setAttribute("aria-expanded", o); };
+function status(){
+  const p = new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Moscow",hour:"2-digit",minute:"2-digit",hour12:false}).formatToParts(new Date());
+  const m = +p.find(x => x.type === "hour").value * 60 + +p.find(x => x.type === "minute").value;
+  const open = m >= 570 && m < 1200;
+  document.querySelectorAll(".js-status").forEach(s => { s.classList.toggle("closed", !open); s.querySelector("span").textContent = open ? "Открыто до 20:00" : "Закрыто · откроемся в 9:30"; });
+}
+status(); setInterval(status, 60000);
+</script>
+</body>
+</html>
